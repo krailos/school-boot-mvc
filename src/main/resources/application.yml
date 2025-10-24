@@ -1,0 +1,21 @@
+spring:
+    mvc:
+        view:
+            prefix: /templates
+            sufix: .html
+        format:
+          date: iso
+       
+    datasource:
+        url: jdbc:postgresql://localhost:5432/school
+        username: admin
+        password: 123
+        driver-class-name: org.postgresql.Driver
+    sql:
+        init:
+            mode: always
+    jpa: 
+        properties:
+            hibermate:
+                show_sql: true
+                format_sql: true
