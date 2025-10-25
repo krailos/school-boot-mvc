@@ -7,6 +7,8 @@ import com.krailo.school.enumeration.DiscountType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,8 +23,8 @@ import lombok.ToString;
 
 
 @Data
-@EqualsAndHashCode(exclude = "student")
-@ToString(exclude = "student")
+@EqualsAndHashCode(exclude = {"student", "subject"})
+@ToString(exclude ={"student", "subject"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -32,6 +34,7 @@ public class Discount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Enumerated(EnumType.STRING)
     private DiscountType type;
     @Column(name = "discount_value")
     private int value;

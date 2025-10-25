@@ -1,10 +1,13 @@
 package com.krailo.school.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.krailo.school.dto.GangDto;
 import com.krailo.school.entity.Gang;
 import com.krailo.school.repository.SubjectRepository;
 import com.krailo.school.repository.TeacherRepository;
 
+@Component
 public class GangMapper implements Mapper<Gang, GangDto> {
     
     SubjectRepository subjectRepository;
@@ -13,7 +16,7 @@ public class GangMapper implements Mapper<Gang, GangDto> {
     @Override
     public GangDto mapEntityToDto(Gang o) {
         return new GangDto(o.getId(), o.getName(), o.getDescription(), o.getSubject(), o.getSubject().getId(),
-                o.getTeacher(), o.getTeacher().getId(), o.getStudents());
+                o.getTeacher(), o.getTeacher().getId(), o.getGangStudents());
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.krailo.school.service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.krailo.school.dto.SubjectDto;
-import com.krailo.school.entity.Price;
 import com.krailo.school.entity.Subject;
 import com.krailo.school.exception.EntityNotFoundException;
 import com.krailo.school.mapper.SubjectMapper;
@@ -23,7 +21,6 @@ import lombok.AllArgsConstructor;
 public class SubjectService {
 
     private SubjectRepository subjectRepository;
-    private PriceRepository priceRepository;
     private SubjectMapper subjectMapper;
 
     

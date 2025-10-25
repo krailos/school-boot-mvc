@@ -2,6 +2,7 @@ package com.krailo.school.dto;
 
 import java.util.List;
 
+import com.krailo.school.entity.GangsStudents;
 import com.krailo.school.entity.Student;
 import com.krailo.school.entity.Subject;
 import com.krailo.school.entity.Teacher;
@@ -18,6 +19,6 @@ public class GangDto {
     private Integer subjectId;
     private Teacher teacher;
     private Integer teacherId;
-    private List<Student> students;
+    private List<GangsStudents> gangStudents;
 
 }

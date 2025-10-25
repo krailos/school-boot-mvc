@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+import com.krailo.school.repository.StudentRepository;
+import com.krailo.school.repository.SubjectRepository;
 import com.krailo.school.service.AudienceService;
 import com.krailo.school.service.PriceService;
 import com.krailo.school.service.SubjectService;
@@ -19,10 +21,12 @@ public class SchoolBootMvcApplication {
 
         SubjectService subjectService = context.getBean(SubjectService.class);
         PriceService priceService = context.getBean(PriceService.class);
+        StudentRepository studentRepository = context.getBean(StudentRepository.class);
 
       //  System.out.println(priceService.findBySubject(subjectService.findByIdEntity(1)));
       //  subjectService.findAllWhithSortedByPriceDate().stream().forEach(s ->System.out.println(s.getPrices()));
-         System.out.println(subjectService.findAll());
+       //  System.out.println(subjectService.findAll());
+        System.out.println(studentRepository.findAll());
 
     }
 

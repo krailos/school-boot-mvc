@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS subject CASCADE;
 DROP TABLE IF EXISTS gang CASCADE;
 DROP TABLE IF EXISTS student CASCADE;
 DROP TABLE IF EXISTS subject_price CASCADE;
+DROP TABLE IF EXISTS gangs_students CASCADE;
 DROP TABLE IF EXISTS students_gangs CASCADE;
 DROP TABLE IF EXISTS schedule CASCADE;
 DROP TABLE IF EXISTS lesson CASCADE;
@@ -71,7 +72,6 @@ CREATE TABLE gang (
 
 CREATE TABLE student (
     id serial NOT NULL,
-    gang_id int REFERENCES gang (id) ON UPDATE CASCADE ON DELETE CASCADE,   
     first_name character varying (50) NOT NULL,
     second_name character varying (50),
     last_name character varying (50) NOT NULL,
@@ -87,11 +87,11 @@ CREATE TABLE student (
 );
 
 
-CREATE TABLE students_gangs (
+CREATE TABLE gangs_students (
     id serial NOT NULL,
+    gang_id int REFERENCES gang (id) ON UPDATE CASCADE ON DELETE CASCADE,  
     student_id int REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    gang_id int REFERENCES gang (id) ON UPDATE CASCADE ON DELETE CASCADE,   
-    CONSTRAINT students_gangs__pkey PRIMARY KEY (id), UNIQUE (student_id, gang_id)
+    CONSTRAINT students_gangs__pkey PRIMARY KEY (id), UNIQUE ( gang_id, student_id)
 );
 
 CREATE TABLE schedule (

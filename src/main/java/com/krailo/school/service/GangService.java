@@ -1,19 +1,16 @@
 package com.krailo.school.service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.krailo.school.dto.SubjectDto;
-import com.krailo.school.entity.Price;
-import com.krailo.school.entity.Subject;
+import com.krailo.school.dto.GangDto;
+import com.krailo.school.entity.Gang;
 import com.krailo.school.exception.EntityNotFoundException;
-import com.krailo.school.mapper.SubjectMapper;
-import com.krailo.school.repository.PriceRepository;
-import com.krailo.school.repository.SubjectRepository;
+import com.krailo.school.mapper.GangMapper;
+import com.krailo.school.repository.GangRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -22,42 +19,40 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class GangService {
 
-    private SubjectRepository subjectRepository;
-    private PriceRepository priceRepository;
-    private SubjectMapper subjectMapper;
+    private GangRepository gangRepository;
+    private GangMapper gangMapper;
 
     
-    public List<SubjectDto> findAll() {
-      return subjectRepository.findAll().stream().peek(s -> s.getPrices().sort((o1, o2) -> o2.getDate().compareTo(o1.getDate())))
-              .map(subjectMapper::mapEntityToDto).toList();
+    public List<GangDto> findAll() {
+      return gangRepository.findAll().stream().map(gangMapper::mapEntityToDto).toList();
   }
 
 
-    public SubjectDto findById(Integer id) {
-        return subjectRepository.findById(id).map(subjectMapper::mapEntityToDto)
-                .orElseThrow(() -> new EntityNotFoundException(String.format("Subject whith id= %d not exist", id)));
+    public GangDto findById(Integer id) {
+        return gangRepository.findById(id).map(gangMapper::mapEntityToDto)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Gang whith id= %d not exist", id)));
     }
 
-    public Subject findByIdEntity(Integer id) {
-        return subjectRepository.findById(id)
+    public Gang findByIdEntity(Integer id) {
+        return gangRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Audience whith id= %d not exist", id)));
     }
 
-    public SubjectDto create(SubjectDto subjectDto) {
-        return Optional.of(subjectDto).map(subjectMapper::mapDtoToEntityForCreate).map(subjectRepository::save)
-                .map(subjectMapper::mapEntityToDto).orElseThrow();
+    public GangDto create(GangDto gangDto) {
+        return Optional.of(gangDto).map(gangMapper::mapDtoToEntityForCreate).map(gangRepository::save)
+                .map(gangMapper::mapEntityToDto).orElseThrow();
     }
 
-    public SubjectDto update(Integer id, SubjectDto subjectDto) {
-        return subjectRepository.findById(id)
-                .map(entity -> subjectMapper.mapDtoToEntityForUpdate(subjectDto, entity))
-                .map(subjectRepository::saveAndFlush).map(subjectMapper::mapEntityToDto)
+    public GangDto update(Integer id, GangDto gangDto) {
+        return gangRepository.findById(id)
+                .map(entity -> gangMapper.mapDtoToEntityForUpdate(gangDto, entity))
+                .map(gangRepository::saveAndFlush).map(gangMapper::mapEntityToDto)
                 .orElseThrow(() -> new RuntimeException("smth wrong when update"));
     }
 
     public boolean delete(Integer id) {
-        return subjectRepository.findById(id).map(entity -> {
-            subjectRepository.delete(entity);
+        return gangRepository.findById(id).map(entity -> {
+            gangRepository.delete(entity);
             return true;
         }).orElse(false);
     }
