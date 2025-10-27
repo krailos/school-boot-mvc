@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.krailo.school.dto.GangDto;
+import com.krailo.school.dto.StudentDto;
 import com.krailo.school.dto.SubjectDto;
 import com.krailo.school.entity.GangsStudents;
 import com.krailo.school.entity.Student;
 import com.krailo.school.entity.Subject;
 import com.krailo.school.repository.StudentRepository;
 import com.krailo.school.service.GangService;
+import com.krailo.school.service.StudentService;
 import com.krailo.school.service.SubjectService;
 
 import lombok.AllArgsConstructor;
@@ -28,12 +30,11 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 public class StudentController {
 
-    private GangService gangService;
-    private StudentRepository studentRepository;
+    private StudentService studentService;
 
     @GetMapping
     public String findAll(Model model) {
-        model.addAttribute("gangs", gangService.findAll());
+        model.addAttribute("students", studentService.findAll());
         return "/students";
     }
     
@@ -41,7 +42,7 @@ public class StudentController {
     
     @GetMapping("/{id}")
     public String findById (@PathVariable("id") Integer id, Model model) {
-          model.addAttribute("gang", gangService.findById(id));
+          model.addAttribute("student", studentService.findById(id));
         return "/student";        
     }
     
@@ -49,27 +50,27 @@ public class StudentController {
     
     @GetMapping("/student/new")
     public String createForm (Model model) {
-    model.addAttribute("gang", new Subject());
+    model.addAttribute("gang", new Student());
     return "/studentNew";
     }
     
     
     @PostMapping("/create")
    // @ResponseStatus(HttpStatus.CREATED)
-    public String create ( @ModelAttribute GangDto gang) {
-        gangService.create(gang);  
+    public String create ( @ModelAttribute StudentDto student) {
+        studentService.create(student);  
         return "redirect:/students";     
     }
     
     @PostMapping("/{id}/update")
-    public String update (@PathVariable("id") Integer id, @ModelAttribute GangDto gangDto) {
-           gangService.update(id, gangDto); 
+    public String update (@PathVariable("id") Integer id, @ModelAttribute StudentDto studentDto) {
+           studentService.update(id, studentDto); 
         return "redirect:/students";        
     }
     
     @PostMapping("/{id}/delete")
     public String delete (@PathVariable("id") Integer id) {
-         gangService.delete(id); 
+         studentService.delete(id); 
         return "redirect:/students";        
     }
 

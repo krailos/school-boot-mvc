@@ -1,5 +1,6 @@
 package com.krailo.school.service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.krailo.school.dto.StudentDto;
+import com.krailo.school.entity.Student;
 import com.krailo.school.exception.EntityNotFoundException;
 import com.krailo.school.mapper.StudentMapper;
 import com.krailo.school.repository.StudentRepository;
@@ -23,13 +25,18 @@ public class StudentService {
 
     
     public List<StudentDto> findAll() {
-      return studentRepository.findAll().stream().map(studentMapper::mapEntityToDto).toList();
+      return studentRepository.findAll().stream().sorted(Comparator.comparing(Student::getLastName)).map(studentMapper::mapEntityToDto).toList();
   }
 
 
     public StudentDto findById(Integer id) {
         return studentRepository.findById(id).map(studentMapper::mapEntityToDto)
-                .orElseThrow(() -> new EntityNotFoundException(String.format("Gang whith id= %d not exist", id)));
+                .orElseThrow(() -> new EntityNotFoundException(String.format("student whith id= %d not exist", id)));
+    }
+    
+    public Student findByIdEntity(Integer id) {
+        return studentRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("student whith id= %d not exist", id)));
     }
 
 

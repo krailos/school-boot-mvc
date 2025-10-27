@@ -55,14 +55,13 @@ INSERT INTO gangs_students (gang_id, student_id) VALUES
 ('3', '9');
 
 
-INSERT INTO schedule (audience_id, gang_id, week_day, start_time, end_time) VALUES
-('1', '1', 'ПОНЕДІЛОК', '12:00', '13:00'),
-('2', '2', 'ПОНЕДІЛОК', '12:00', '13:00');
+INSERT INTO schedule (subject_id, audience_id, gang_id, week_day, start_time, end_time) VALUES
+('1', '1', '1', 'ПОНЕДІЛОК', '12:00', '13:00'),
+('2', '2', '2', 'ПОНЕДІЛОК', '13:00', '14:00');
 
-INSERT INTO lesson (schedule_id, lesson_date) VALUES
-('1', '09.01.2025'),
-('1', '09.08.2025'),
-('2', '09.15.2025');    
+INSERT INTO lesson (subject_id, gang_id, audience_id, lesson_date, lesson_start, lesson_end) VALUES
+('1', '1', '1', '09.01.2025', '12:00', '13:00'),
+('2', '2', '2', '09.01.2025', '12:00', '13:00');    
 
 INSERT INTO lessons_students (lesson_id, student_id) VALUES
 ('1', '1'),
@@ -70,10 +69,8 @@ INSERT INTO lessons_students (lesson_id, student_id) VALUES
 ('1', '3'),
 ('2', '1'),
 ('2', '2'),
-('2', '3'),
-('3', '1'),
-('3', '2'),
-('3', '3');
+('2', '3');
+
 
 INSERT INTO price (subject_id, name, price_value, price_date) VALUES
 ('1', 'базова', '100', '09.01.2025'),
@@ -92,6 +89,15 @@ INSERT INTO payment (student_id, payment_sum, description, payment_date) VALUES
 ('1', '1000', 'платіж за курс', '09.01.2025'),
 ('2', '1000', 'платіж за курс', '09.01.2025'),
 ('3', '1000', 'платіж за курс', '09.01.2025');
+
+
+INSERT INTO lesson_and_student (lesson_id, student_id) VALUES
+('1', '1'),
+('1', '2'),
+('1', '3'),
+('2', '1'),
+('2', '2'),
+('2', '3');
 
 
 

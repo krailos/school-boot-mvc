@@ -19,8 +19,13 @@ public class PriceMapper implements Mapper<Price, PriceDto> {
     @Override
     public PriceDto mapEntityToDto(Price entity) {
 
-        return new PriceDto(entity.getId(), entity.getName(), entity.getValue(), entity.getDate(),
-                entity.getSubject().getId(), entity.getSubject());
+        return new PriceDto(
+                entity.getId(),
+                entity.getName(), 
+                entity.getValue(),
+                entity.getDate(),
+                entity.getSubject().getId(), 
+                entity.getSubject());
     }
 
     @Override

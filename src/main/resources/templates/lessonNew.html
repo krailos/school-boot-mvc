@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>lesson-new</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #edeff1" data-bs-theme="light">
+      <div class="container">
+        <a class="navbar-brand" href="/">Smartum</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/schedules">Розклад</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div>
+        <div class="text-center fs-6 text-uppercase fw-semibold">урок</div>
+
+        <form th:action="@{/schedules/lessons/create}" method="post">
+          <div class="mb-3">
+            <label for="date" class="form-label">
+              Дата <input class="form-control" id="date" type="date" name="date" th:value="${lesson.date}" />
+            </label>
+             <label for="date" class="form-label">
+              Аудиторія <input class="form-control" id="date" type="text" name="audienceId" th:value="${lesson.audience.id}" />
+            </label>
+            <label for="subject" class="form-label">
+              Курс
+              <input class="form-control" id="subject" type="text" name="subjectId" th:value="${lesson.subject.id}" />
+            </label>
+            <label for="gang" class="form-label">
+              Група
+              <input class="form-control" id="gang" type="text" name="gangId" th:value="${lesson.gang.id}" />
+            </label>
+            <label for="start" class="form-label">
+              Початок уроку
+              <input class="form-control" id="start" type="time" name="startTime" th:value="${lesson.startTime}" />
+            </label>
+            <label for="end" class="form-label">
+              Кінець уроку
+              <input class="form-control" id="end" type="time" name="endTime" th:value="${lesson.endTime}" />
+            </label>
+
+              <div class="text-center fs-5 text-uppercase fw-light font-monospace">
+                виберіть присутніх учнів</div>  
+            <select class="form-select" multiple aria-label="Multiple select example" th:field="${lesson.students}">
+                 
+              <option
+                th:each="student : ${lesson.students}"
+                th:text="${student.lastName}"
+                th:value="${student.id}"
+                th:selected="${1==1}">
+              </option>
+            </select>
+            
+            
+          </div>
+          <button type="submit" class="btn btn-primary">Виконати</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

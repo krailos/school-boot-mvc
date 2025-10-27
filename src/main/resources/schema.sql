@@ -13,6 +13,7 @@ DROP TABLE IF EXISTS lessons_students CASCADE;
 DROP TABLE IF EXISTS payment CASCADE;
 DROP TABLE IF EXISTS discount CASCADE;
 DROP TABLE IF EXISTS price CASCADE;
+DROP TABLE IF EXISTS lesson_and_student CASCADE;
 
 
 DROP TYPE IF EXISTS gender CASCADE;
@@ -96,6 +97,7 @@ CREATE TABLE gangs_students (
 
 CREATE TABLE schedule (
     id serial NOT NULL,
+    subject_id int REFERENCES subject (id) ON UPDATE CASCADE ON DELETE CASCADE,
     audience_id int REFERENCES audience (id) ON UPDATE CASCADE ON DELETE CASCADE,
     gang_id int REFERENCES gang (id) ON UPDATE CASCADE ON DELETE CASCADE, 
     week_day week_day NOT NULL,
@@ -106,8 +108,12 @@ CREATE TABLE schedule (
 
 CREATE TABLE lesson (
     id serial NOT NULL,
-    schedule_id int REFERENCES schedule (id) ON UPDATE CASCADE ON DELETE CASCADE,
-    lesson_date date NOT NULL,   
+    subject_id int REFERENCES subject (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    gang_id int REFERENCES gang (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    audience_id int REFERENCES audience (id) ON UPDATE CASCADE ON DELETE CASCADE,
+    lesson_date date NOT NULL,  
+    lesson_start time NOT NULL,
+    lesson_end time NOT NULL,
     CONSTRAINT lesson__pkey PRIMARY KEY (id)
 );
 
@@ -146,3 +152,11 @@ CREATE TABLE price (
     price_date date NOT NULL,
     CONSTRAINT price__pk PRIMARY KEY (id), UNIQUE (subject_id, price_date)
 );
+
+
+CREATE TABLE lesson_and_student (
+    lesson_id int REFERENCES lesson (id),
+    student_id int REFERENCES student (id),
+    PRIMARY KEY (lesson_id, student_id)
+    );
+

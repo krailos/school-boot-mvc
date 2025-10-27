@@ -29,9 +29,21 @@ public class StudentMapper implements Mapper<Student, StudentDto> {
 
     @Override
     public StudentDto mapEntityToDto(Student e) {
-        return new StudentDto(e.getId(), e.getStudentGangs(), e.getFirstName(), e.getSecondName(), e.getLastName(),
-                e.getContactName(), e.getPhone(), e.getEmail(), e.getAddress(), e.getGender(), e.getStudentStatus(),
-                e.getBirthDate(), e.getDescription(), e.getDiscounts());
+        return new StudentDto(
+                e.getId(), 
+                e.getStudentGangs(), 
+                e.getFirstName(), 
+                e.getSecondName(), 
+                e.getLastName(),
+                e.getContactName(),
+                e.getPhone(), 
+                e.getEmail(), 
+                e.getAddress(), 
+                e.getGender(), 
+                e.getStudentStatus(),
+                e.getBirthDate(), 
+                e.getDescription(),
+                e.getDiscounts());
     }
 
     @Override

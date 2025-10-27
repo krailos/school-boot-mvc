@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>subjects</title>
+<title>schedules</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -26,13 +26,14 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a th:href="@{/subjects/subject/new}">
-							<button class="btn btn-success">Додати курс</button>
-					</a></li>
+					<li class="nav-item"><a th:href="@{/schedules/schedule/new}">
+							<button class="btn btn-success">Додати розклад</button>
+					</a></li>					
 					<li class="nav-item">
-					   <a class="nav-link active"
-                        aria-current="page" href="/prices">Вартість курсів</a>
-                    </li>
+                       <a class="nav-link active"
+                        aria-current="page" href="/lessons">Уроки</a>
+                    </li>   
+					
 				</ul>
 			</div>
 		</div>
@@ -43,33 +44,43 @@
 				<thead>
 					<tr>
 						<th scope="col">#</th>
+						<th scope="col">День</th>
 						<th scope="col">Курс</th>
-						<th scope="col">Вартість</th>
-						<th scope="col">Опис</th>
-						<th scope="col">Редагувати вартість</th>
+						<th scope="col">Група</th>
+						<th scope="col">Аудиторія</th>
+						<th scope="col">Початок уроку</th>
+						<th scope="col">Кінець укроку</th>
+						<th scope="col">Провести урок</th>
 						<th scope="col">Редагувати</th>
 						<th scope="col">Видалити</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="subject, index : ${subjects}">
+					<tr th:each="schedule, index : ${schedules}">
 						<td th:text="${index.count}"></td>
-						<td th:text="${subject.name}"></td>
-						<td th:if="${subject.prices.size} > 0" th:text="${subject.prices[0].value}"></td>
-						<td th:unless="${subject.prices.size} > 0" th:text="${нема}"></td>
-						<td th:text="${subject.description}"></td>
-						<td><a th:href="@{prices/{subjectId}/bysubject(subjectId=${subject.id})}">
-                                <button class="btn btn-primary">Змінити вартість</button>
-                        </a></td>
-						<td><a th:href="@{subjects/{id}(id=${subject.id})}">
-								<button class="btn btn-primary">Редагувати</button>
+						<td th:text="${schedule.weekDay}"></td>
+						<td th:text="${schedule.subject.name}"></td>
+						<td th:text="${schedule.gang.name}"></td>
+						<td th:text="${schedule.audience.name}"></td>
+						<td th:text="${schedule.startTime}"></td>
+						<td th:text="${schedule.endTime}"></td>						
+                        
+                        <td>
+                            <form th:action="@{/schedules/{id}/lesson(id=${schedule.id})}"
+                                method="post">
+                                <button class="btn btn-success">провести урок</button>
+                            </form> 
+                        </td>
+                        
+						<td><a th:href="@{schedules/{id}(id=${schedule.id})}">
+								<button class="btn btn-primary">редагувати</button>
 						</a></td>
 
 						<td>
-							<form th:action="@{/subjects/{id}/delete( id=${subject.id})}"
+							<form th:action="@{/schedules/{id}/delete( id=${schedule.id})}"
 								method="post">
 								<button class="btn btn-danger">Видалити</button>
-							</form> </a>
+							</form> 
 						</td>
 					</tr>
 				</tbody>
