@@ -39,23 +39,25 @@
     </nav>
     <div class="container">
       <div>
-        <div class="text-center fs-6 text-uppercase fw-semibold">урок</div>
+        <div class="text-center fs-6 text-uppercase fw-semibold"></div>
 
         <form th:action="@{/schedules/lessons/create}" method="post">
           <div class="mb-3">
-            <label for="date" class="form-label">
-              Дата <input class="form-control" id="date" type="date" name="date" th:value="${lesson.date}" />
+      
+             <label for="aud" class="form-label">  Аудиторія          
+                <input disabled class="form-control" id="aud" type="text" th:value="${lesson.audience.name}" />
+                <input id="audId" type="hidden" class="form-control"  name="audienceId" th:value="${lesson.audience.id}" />
+             </label>
+            <label for="subject" class="form-label"> Курс             
+                <input disabled class="form-control" id="subject" type="text" th:value="${lesson.subject.name}" />
+                <input type="hidden" class="form-control"  name="subjectId" th:value="${lesson.subject.id}" />
             </label>
-             <label for="date" class="form-label">
-              Аудиторія <input class="form-control" id="date" type="text" name="audienceId" th:value="${lesson.audience.id}" />
+            <label for="gang" class="form-label"> Група
+               <input disabled class="form-control" id="gang" type="text" th:value="${lesson.gang.name}" />
+               <input type="hidden" class="form-control" name="gangId" th:value="${lesson.gang.id}" />
             </label>
-            <label for="subject" class="form-label">
-              Курс
-              <input class="form-control" id="subject" type="text" name="subjectId" th:value="${lesson.subject.id}" />
-            </label>
-            <label for="gang" class="form-label">
-              Група
-              <input class="form-control" id="gang" type="text" name="gangId" th:value="${lesson.gang.id}" />
+            <label for="date" class="form-label">Дата
+               <input class="form-control" id="date"  type="date" name="date"  th:value="${#dates.format(#dates.createToday(), 'yyyy-MM-dd')}" />
             </label>
             <label for="start" class="form-label">
               Початок уроку
@@ -107,7 +109,7 @@
             
             
           </div>
-          <button type="submit" class="btn btn-primary">Виконати</button>
+          <button type="submit" class="btn btn-primary">Провести урок</button>
         </form>
       </div>
     </div>
