@@ -121,6 +121,8 @@ CREATE TABLE lessons_students (
     id serial NOT NULL,
     lesson_id int REFERENCES lesson (id) ON UPDATE CASCADE ON DELETE CASCADE, 
     student_id int REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE, 
+    is_student_present BOOLEAN NOT NULL,
+    is_lesson_payed BOOLEAN NOT NULL,
     CONSTRAINT students_lessons__pkey PRIMARY KEY (id), UNIQUE (student_id, lesson_id)
 );
 

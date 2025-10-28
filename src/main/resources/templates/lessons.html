@@ -63,7 +63,8 @@
 						<td th:text="${lesson.audience.name}"></td>					
 						<td th:text="${lesson.startTime}"></td>
 						<td th:text="${lesson.endTime}"></td>
-						<td th:text="${lesson.students.size}"></td>
+						<td th:text="${lesson.lessonStudents.size}"></td>
+						
 
 						<td><a th:href="@{/}">
 								<button class="btn btn-primary">Редагувати урок</button>

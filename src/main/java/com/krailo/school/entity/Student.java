@@ -26,8 +26,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@EqualsAndHashCode(exclude = {"studentGangs", "discounts", "lessons"})
-@ToString(exclude =  {"studentGangs", "discounts", "lessons"})
+@EqualsAndHashCode(exclude = {"studentGangs", "discounts", "studentLessons"})
+@ToString(exclude =  {"studentGangs", "discounts", "studentLessons"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -54,10 +54,10 @@ public class Student {
     private String description;
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     private List<Discount> discounts;
-//    @OneToMany(mappedBy = "student")
-//    private List<LessonsStudents> lessonStudents;
-    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY)
-    private List<Lesson> lessons;
+    @OneToMany(mappedBy = "student")
+    private List<LessonsStudents> studentLessons;
+//    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY)
+//    private List<Lesson> lessons;
     
 
 

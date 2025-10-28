@@ -31,9 +31,9 @@ public class SchoolBootMvcApplication {
 
       //  System.out.println(priceService.findBySubject(subjectService.findByIdEntity(1)));
       //  subjectService.findAllWhithSortedByPriceDate().stream().forEach(s ->System.out.println(s.getPrices()));
-      //   System.out.println(subjectService.findAll());
-      //  System.out.println(lessonService.findById(1));
-      lessonService.findAll().stream().forEach(l -> System.out.println(l.getStudents()));
+         System.out.println(subjectService.findAll());
+
+
 
     }
 

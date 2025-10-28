@@ -2,6 +2,7 @@ package com.krailo.school.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -14,6 +15,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Transient;
+import jakarta.transaction.TransactionScoped;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,8 +26,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@EqualsAndHashCode(exclude = {"subject","gang", "audience", "students" })
-@ToString(exclude = {"subject","gang", "audience", "students" })
+@EqualsAndHashCode(exclude = {"subject","gang", "audience", "lessonStudents" })
+@ToString(exclude = {"subject","gang", "audience", "lessonStudents" })
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -48,12 +52,13 @@ public class Lesson {
     private LocalTime startTime;
     @Column(name = "lesson_end")
     private LocalTime endTime;
-//    @OneToMany(mappedBy = "lesson")
-//    private List<LessonsStudents> lessonStudents;
-    @ManyToMany (fetch = FetchType.LAZY)
-    @JoinTable(name = "lesson_and_student", 
-    joinColumns =  @JoinColumn(name = "lesson_id"),
-    inverseJoinColumns = @JoinColumn(name = "student_id"))
-    private List<Student> students;
+    @OneToMany(mappedBy = "lesson")
+    private List<LessonsStudents> lessonStudents;
+//    @ManyToMany (fetch = FetchType.LAZY)
+//    @JoinTable(name = "lesson_and_student", 
+//    joinColumns =  @JoinColumn(name = "lesson_id"),
+//    inverseJoinColumns = @JoinColumn(name = "student_id"))
+//    @Transient
+//    private List<Student> students;
 
 }

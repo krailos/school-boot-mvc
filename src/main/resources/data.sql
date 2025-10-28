@@ -63,13 +63,13 @@ INSERT INTO lesson (subject_id, gang_id, audience_id, lesson_date, lesson_start,
 ('1', '1', '1', '09.01.2025', '12:00', '13:00'),
 ('2', '2', '2', '09.01.2025', '12:00', '13:00');    
 
-INSERT INTO lessons_students (lesson_id, student_id) VALUES
-('1', '1'),
-('1', '2'),
-('1', '3'),
-('2', '1'),
-('2', '2'),
-('2', '3');
+INSERT INTO lessons_students (lesson_id, student_id, is_student_present, is_lesson_payed) VALUES
+('1', '1', 'true', 'true'),
+('1', '2', 'true', 'true'),
+('1', '3', 'true', 'true'),
+('2', '1', 'true', 'true'),
+('2', '2', 'true', 'true'),
+('2', '3', 'true', 'true');
 
 
 INSERT INTO price (subject_id, name, price_value, price_date) VALUES

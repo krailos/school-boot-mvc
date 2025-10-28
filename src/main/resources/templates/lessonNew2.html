@@ -41,7 +41,7 @@
       <div>
         <div class="text-center fs-6 text-uppercase fw-semibold"></div>
 
-        <form th:action="@{/schedules/lessons/create}" method="post" th:object="${lesson}">
+        <form th:action="@{/schedules/lessons/create}" method="post">
           <div class="mb-3">
       
              <label for="aud" class="form-label">  Аудиторія          
@@ -70,6 +70,15 @@
 
               <div class="text-center fs-5 text-uppercase fw-light font-monospace">
                 виберіть присутніх учнів</div>  
+            <!-- select class="form-select" multiple aria-label="Multiple select example" th:field="${lesson.students}">
+                 
+              <option
+                th:each="student : ${lesson.students}"
+                th:text="${student.lastName}"
+                th:value="${student.id}"
+                th:selected="${1==1}">
+              </option>
+            </select-->
             
             <div>
                 <table class="table table-light" > 
@@ -79,40 +88,26 @@
 				      <th scope="col">Прізвище</th>
 				      <th scope="col">Імя</th>				   
 				      <th scope="col">Присутні на уроці</th>
-				      <th scope="col">Платний урок</th>
 				    </tr>
 				  </thead>
-				  <tbody class="table-group-divider"> 
-				    <tr th:each="ls, index : *{lessonStudents}"  th:field="*{lessonStudents}">				     
+				  <tbody class="table-group-divider">
+				    <tr th:each="student, index : ${lesson.students}" th:field="${lesson.students}">				     
 				      <td th:text="${index.count}"></td>				   
+				      <td th:text="${student.lastName}"></td>
+				      <td th:text="${student.firstName}"></td>
 				      <td>
-				        <input class="form-control" type="hidden" 
-				            th:text="${ls.student.lastName}" 
-				            th:value="${ls.student}" 
-				            th:field="*{lessonStudents[__${index.index}__].student}">
-				      </td>
-				      <td th:text="${ls.student.firstName}"></td>
-				      			
-				      <td>
-				        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role=switch
-                            value="true" 
-                            th:field="*{lessonStudents[__${index.index}__].present}">
-                        </div>
-                      </td>   
-                      
-                      <td>
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role=switch
-                            value="true" 
-                            th:field="*{lessonStudents[__${index.index}__].payed}">
-                        </div>
-                      </td>                                   
-                         		
+				      <div class="form-check form-switch">
+				        <input class="form-check-input" type="checkbox" role=switch  th:value="${student.id}" th:field="${lesson.students}">
+				      </td>				  
+				    </div>
 				    </tr>				   
 				  </tbody>
 				</table>
             </div>
+            
+            
+            
+            
             
           </div>
           <button type="submit" class="btn btn-primary">Провести урок</button>
