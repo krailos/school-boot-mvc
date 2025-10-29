@@ -13,7 +13,7 @@ DROP TABLE IF EXISTS lessons_students CASCADE;
 DROP TABLE IF EXISTS payment CASCADE;
 DROP TABLE IF EXISTS discount CASCADE;
 DROP TABLE IF EXISTS price CASCADE;
-DROP TABLE IF EXISTS lesson_and_student CASCADE;
+
 
 
 DROP TYPE IF EXISTS gender CASCADE;
@@ -131,7 +131,7 @@ CREATE TABLE payment (
     id serial NOT NULL,
     student_id int REFERENCES student (id) ON UPDATE CASCADE ON DELETE CASCADE,
     payment_date date NOT NULL, 
-    payment_sum decimal (8, 2) NOT NULL,  
+    payment_value decimal (8, 2) NOT NULL,  
     description character varying (150),
     CONSTRAINT payment__pkey PRIMARY KEY (id)
 );
@@ -156,9 +156,4 @@ CREATE TABLE price (
 );
 
 
-CREATE TABLE lesson_and_student (
-    lesson_id int REFERENCES lesson (id),
-    student_id int REFERENCES student (id),
-    PRIMARY KEY (lesson_id, student_id)
-    );
 
