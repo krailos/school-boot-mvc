@@ -40,9 +40,11 @@
 				 <select name="subjectId" class="form-select" aria-label="Default select example">
                         <option selected>Виберіть курс</option>
                         <option th:if="${subjectChoosen==null}"  th:each="subject : ${subjects}" th:text="${subject.name}" th:value="${subject.id}" >subject name</option>
-                        <option th:unless="${subjectChoosen==null}" th:each="subject : ${subjects}" th:text="${subject.name}" th:value="${subject.id}"
-                         th:selected="${subjectChoosen.id == subject.id}" >subject name</option>
-                       
+                        <option th:unless="${subjectChoosen==null}" 
+	                        th:each="subject : ${subjects}" 
+	                        th:text="${subject.name}" 
+	                        th:value="${subject.id}"
+	                        th:selected="${subjectChoosen.id == subject.id}" >subject name</option>	                       
                     </select>
 					<label for="price-name" class="form-label"> Вид ціни <input
 						class="form-control" id="price-name" type="text" name="name"

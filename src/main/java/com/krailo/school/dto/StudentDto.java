@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.krailo.school.entity.Discount;
 import com.krailo.school.entity.GangsStudents;
+import com.krailo.school.entity.LessonsStudents;
+import com.krailo.school.entity.Payment;
+import com.krailo.school.entity.StudentsDiscounts;
 import com.krailo.school.enumeration.Gender;
 import com.krailo.school.enumeration.StudentStatus;
 
@@ -20,7 +23,7 @@ import lombok.Value;
 public class StudentDto {
  
     private Integer id;
-    private List<GangsStudents> studentGangs;
+    private List<GangsStudents> gangsStudents;
     private String firstName;
     private String secondName;
     private String lastName;
@@ -32,6 +35,8 @@ public class StudentDto {
     private StudentStatus studentStatus;
     private LocalDate birthDate;
     private String description;
-    private List<Discount> discounts;
+    private List<StudentsDiscounts> studentsDiscounts;
+    private List<Payment> payments;
+    private List<LessonsStudents> lessonsStudents;
 
 }

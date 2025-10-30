@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<title>discounts</title>
+<title>payments</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -26,13 +26,12 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a th:href="@{/discounts/discount/new}">
-							<button class="btn btn-success">Створити нову знижку</button>
+					<li class="nav-item"><a th:href="@{/payments/payment/new}">
+							<button class="btn btn-success">Додати платіж</button>
 					</a></li>
 
-                      <li class="nav-item"><a class="nav-link active"
-                        aria-current="page" href="/studentsdiscounts">Знижки та Студенти</a></li>
-
+					<li class="nav-item"><a class="nav-link active"
+						aria-current="page" href="/">Звіт по платежам</a></li>
 
 				</ul>
 			</div>
@@ -43,29 +42,39 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th scope="col">#</th>						
-						<th scope="col">Вид знижки</th>
-						<th scope="col">Знижка</th>	
+						<th scope="col">#</th>
+						<th scope="col">Прізвище</th>
+                        <th scope="col">Імя</th>  				
+                        <th scope="col">Сума</th>  				
 						<th scope="col">Дата</th>												
+						<th scope="col">Примітка</th>												
 						<th scope="col">Редагувати</th>
 						<th scope="col">Видалити</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="discount, index : ${discounts}">
+					<tr th:each="payment, index : ${payments}">
 						<td th:text="${index.count}"></td>
-						<td th:text="${discount.name}"></td>
-						<td th:text="${discount.value}"></td>
-						<td th:text="${discount.date}"></td>
-						<td><a th:href="@{/discounts/{id} (id=${discount.id})}">
-								<button class="btn btn-primary">Редагувати знижку</button>
-						</a></td>
+						<td th:text="${payment.student.lastName}"></td>
+						<td th:text="${payment.student.firstName}"></td>
+						<td th:text="${payment.value}"></td>	
+						<td th:text="${payment.date}"></td>
+						<td th:text="${payment.description}"></td>
+						
+						<td>					
+							<form th:action="@{/payments/{id} ( id=${payment.id})}"
+	                                method="get">
+	                                <button class="btn btn-success">Редагувати платіж</button>
+	                            </form>
+						</td>
+						
 						<td>
-							<form th:action="@{/discounts/{id}/delete( id=${discount.id})}"
+							<form th:action="@{/payments/{id}/delete( id=${payment.id})}"
 								method="post">
 								<button class="btn btn-danger">Видалити</button>
 							</form>
 						</td>
+						
 					</tr>
 				</tbody>
 			</table>

@@ -1,6 +1,7 @@
 package com.krailo.school.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import com.krailo.school.enumeration.DiscountType;
 
@@ -10,7 +11,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,26 +23,29 @@ import lombok.ToString;
 
 
 @Data
-@EqualsAndHashCode(exclude = {"student"})
-@ToString(exclude ={"student"})
+@EqualsAndHashCode(exclude = {"discount", "student", "subject"})
+@ToString(exclude = {"discount", "student", "subject"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
-public class Payment {
-    
-    
+@Table(name = "students_discounts")
+public class StudentsDiscounts {
+      
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
+    @JoinColumn(name = "discount_id")
+    private Discount discount;
+    @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
-    @Column(name = "payment_value")
-    private int value;
-    @Column(name = "payment_date")
+    @ManyToOne
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
+    @Column(name = "students_discounts_date")
     private LocalDate date;
-    private String description;
 
 
 }

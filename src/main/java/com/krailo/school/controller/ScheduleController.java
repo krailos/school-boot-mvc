@@ -106,18 +106,18 @@ public class ScheduleController {
             lessonStudent.setStudent(student);
             ls.add(lessonStudent);
         }
-        lesson.setLessonStudents(ls);
+        lesson.setLessonsStudents(ls);
         model.addAttribute("lesson", lesson);
         return "/lessonNew";
     }
 
     @PostMapping("/lessons/create")
     public String testCreate(@ModelAttribute LessonDto lessonDto) {
-        System.out.println(lessonDto.getLessonStudents());
+        System.out.println(lessonDto.getLessonsStudents());
         LessonDto lessonDtoWhithId = lessonService.create(lessonDto);
         System.out.println(lessonDto);    
         Lesson lesson = lessonService.findByIdEntity(lessonDtoWhithId.getId());
-        List<LessonsStudents> ls = lessonDto.getLessonStudents();
+        List<LessonsStudents> ls = lessonDto.getLessonsStudents();
         for (LessonsStudents lessonsStudents : ls) {
             lessonsStudents.setLesson(lesson);
             lessonsStudentsRepository.save(lessonsStudents);

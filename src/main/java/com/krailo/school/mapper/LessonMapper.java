@@ -35,8 +35,7 @@ public class LessonMapper implements Mapper<Lesson, LessonDto> {
         e.setDate(d.getDate());
         e.setStartTime(d.getStartTime());
         e.setEndTime(d.getEndTime());
-        e.setLessonStudents(d.getLessonStudents());
-        e.setLessonStudents(d.getLessonStudents());
+        e.setLessonsStudents(d.getLessonsStudents());
         return e;
     }
 
@@ -53,7 +52,7 @@ public class LessonMapper implements Mapper<Lesson, LessonDto> {
                 e.getDate(),
                 e.getStartTime(),
                 e.getEndTime(),
-                e.getLessonStudents());     
+                e.getLessonsStudents());     
     }
 
     @Override
@@ -64,8 +63,7 @@ public class LessonMapper implements Mapper<Lesson, LessonDto> {
         e.setDate(d.getDate());
         e.setStartTime(d.getStartTime());
         e.setEndTime(d.getEndTime());
-        e.setLessonStudents(d.getLessonStudents());
-        e.setLessonStudents(d.getLessonStudents());
+        e.setLessonsStudents(d.getLessonsStudents());
         return e;
     }
 

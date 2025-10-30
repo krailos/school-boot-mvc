@@ -80,24 +80,22 @@ INSERT INTO price (subject_id, name, price_value, price_date) VALUES
 ('4', 'базова', '100', '09.01.2025');
 
 
-INSERT INTO discount (subject_id, student_id, discount_type, discount_value, discount_date) VALUES
-('1', '1', 'ДРУГИЙ_КУРС', '50', '09.01.2025'),
-('1', '1', 'ДРУГИЙ_КУРС', '70', '09.02.2025'),
-('1', '2', 'УБД', '50', '09.001.2025');
+INSERT INTO discount (name, discount_value, discount_date) VALUES
+('ДРУГИЙ КУРС', '30', '09.01.2025'),
+('ПРИВЕДИ ДРУГА', '20', '09.02.2025'),
+('УБД', '50', '09.001.2025');
 
 INSERT INTO payment (student_id, payment_value, description, payment_date) VALUES
 ('1', '1000', 'платіж за курс', '09.01.2025'),
 ('2', '1000', 'платіж за курс', '09.01.2025'),
 ('3', '1000', 'платіж за курс', '09.01.2025');
 
+INSERT INTO students_discounts (student_id, discount_id, subject_id, students_discounts_date) VALUES
+('1', '1', '1', '09.01.2025'),
+('2', '2', '2', '09.02.2025'),
+('3', '3', '3', '09.03.2025');
 
-INSERT INTO lesson_and_student (lesson_id, student_id) VALUES
-('1', '1'),
-('1', '2'),
-('1', '3'),
-('2', '1'),
-('2', '2'),
-('2', '3');
+
 
 
 

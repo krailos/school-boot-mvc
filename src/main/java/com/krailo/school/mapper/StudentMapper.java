@@ -11,7 +11,7 @@ public class StudentMapper implements Mapper<Student, StudentDto> {
     @Override
     public Student mapDtoToEntityForCreate(StudentDto d) {
         Student e = new Student();
-        e.setStudentGangs(d.getStudentGangs());
+        e.setGangsStudents(d.getGangsStudents());
         e.setFirstName(d.getFirstName());
         e.setSecondName(d.getSecondName());
         e.setLastName(d.getLastName());
@@ -23,7 +23,9 @@ public class StudentMapper implements Mapper<Student, StudentDto> {
         e.setStudentStatus(d.getStudentStatus());
         e.setBirthDate(d.getBirthDate()); 
         e.setDescription(d.getDescription());
-        e.setDiscounts(d.getDiscounts());       
+        e.setStudentsDiscounts(d.getStudentsDiscounts());       
+        e.setPayments(d.getPayments());      
+        e.setLessonsStudents(d.getLessonsStudents());       
         return e;
     }
 
@@ -31,7 +33,7 @@ public class StudentMapper implements Mapper<Student, StudentDto> {
     public StudentDto mapEntityToDto(Student e) {
         return new StudentDto(
                 e.getId(), 
-                e.getStudentGangs(), 
+                e.getGangsStudents(), 
                 e.getFirstName(), 
                 e.getSecondName(), 
                 e.getLastName(),
@@ -42,13 +44,17 @@ public class StudentMapper implements Mapper<Student, StudentDto> {
                 e.getGender(), 
                 e.getStudentStatus(),
                 e.getBirthDate(), 
-                e.getDescription(),
-                e.getDiscounts());
+                e.getDescription(), 
+                e.getStudentsDiscounts(),
+                e.getPayments(),
+                e.getLessonsStudents()           
+                );
+        
     }
 
     @Override
     public Student mapDtoToEntityForUpdate(StudentDto d, Student e) {
-        e.setStudentGangs(d.getStudentGangs());
+        e.setGangsStudents(d.getGangsStudents());
         e.setFirstName(d.getFirstName());
         e.setSecondName(d.getSecondName());
         e.setLastName(d.getLastName());
@@ -60,7 +66,9 @@ public class StudentMapper implements Mapper<Student, StudentDto> {
         e.setStudentStatus(d.getStudentStatus());
         e.setBirthDate(d.getBirthDate()); 
         e.setDescription(d.getDescription());
-        e.setDiscounts(d.getDiscounts());
+        e.setStudentsDiscounts(d.getStudentsDiscounts());       
+        e.setPayments(d.getPayments());      
+        e.setLessonsStudents(d.getLessonsStudents());      
         return e;
     }
 

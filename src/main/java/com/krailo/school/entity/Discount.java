@@ -14,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,8 +24,8 @@ import lombok.ToString;
 
 
 @Data
-@EqualsAndHashCode(exclude = {"student", "subject"})
-@ToString(exclude ={"student", "subject"})
+@EqualsAndHashCode(exclude = {"studentsDiscounts"})
+@ToString(exclude ={"studentsDiscounts"})
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -34,18 +35,12 @@ public class Discount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Enumerated(EnumType.STRING)
-    @Column(name = "discount_type")
-    private DiscountType type;
+    private String name;
     @Column(name = "discount_value")
     private int value;
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
-    @ManyToOne
-    @JoinColumn(name = "subject_id")
-    private Subject subject;
     @Column(name = "discount_date")
     private LocalDate date;
+    @OneToMany(mappedBy = "discount")
+    private List<StudentsDiscounts> studentsDiscounts;
 
 }

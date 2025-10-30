@@ -4,10 +4,14 @@ import org.springframework.stereotype.Component;
 
 import com.krailo.school.dto.GangDto;
 import com.krailo.school.entity.Gang;
+import com.krailo.school.repository.StudentRepository;
 import com.krailo.school.repository.SubjectRepository;
 import com.krailo.school.repository.TeacherRepository;
 
+import lombok.AllArgsConstructor;
+
 @Component
+@AllArgsConstructor
 public class GangMapper implements Mapper<Gang, GangDto> {
     
     SubjectRepository subjectRepository;

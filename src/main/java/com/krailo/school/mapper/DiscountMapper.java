@@ -32,10 +32,10 @@ public class DiscountMapper implements Mapper<Discount, DiscountDto> {
     @Override
     public Discount mapDtoToEntityForCreate(DiscountDto d) {
        Discount e = new Discount();
-        e.setType(d.getType());
-        e.setStudent(studentRepository.findById(d.getStudentId()).get());
-        e.setSubject(subjectRepository.findById(d.getSubjectId()).get());
+        e.setName(d.getName());
+        e.setValue(d.getValue());
         e.setDate(d.getDate());
+        e.setStudentsDiscounts(d.getStudentsDiscounts());
         return e;
     }
 
@@ -43,21 +43,19 @@ public class DiscountMapper implements Mapper<Discount, DiscountDto> {
     public DiscountDto mapEntityToDto(Discount e) {
         return new DiscountDto(
                 e.getId(), 
-                e.getType(),
+                e.getName(),
                 e.getValue(),
-                e.getStudent(), 
-                e.getStudent().getId(), 
-                e.getSubject(), 
-                e.getSubject().getId(), 
-                e.getDate());     
+                e.getDate(),
+                e.getStudentsDiscounts()
+                );
     }
 
     @Override
     public Discount mapDtoToEntityForUpdate(DiscountDto d, Discount e) {   
-        e.setType(d.getType());
-        e.setStudent(studentRepository.findById(d.getStudentId()).get());
-        e.setSubject(subjectRepository.findById(d.getSubjectId()).get());
+        e.setName(d.getName());
+        e.setValue(d.getValue());
         e.setDate(d.getDate());
+        e.setStudentsDiscounts(d.getStudentsDiscounts());
         return e;
     }
 

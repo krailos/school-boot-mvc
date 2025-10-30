@@ -30,7 +30,7 @@ public class LessonService {
 
     public List<LessonDto> findAll() {
         return lessonRepository.findAll().stream()
-                .peek(l -> l.getLessonStudents()
+                .peek(l -> l.getLessonsStudents()
                         .sort((o1, o2) -> o1.getStudent().getLastName().compareTo(o2.getStudent().getLastName())))
                 .map(lessonMapper::mapEntityToDto).toList();
     }
@@ -48,7 +48,7 @@ public class LessonService {
 
     public LessonDto findById(Integer id) {
         Lesson lesson = lessonRepository.findById(id).get();
-        lesson.getLessonStudents()
+        lesson.getLessonsStudents()
                 .sort((o1, o2) -> o1.getStudent().getLastName().compareTo(o2.getStudent().getLastName()));
         LessonDto lessonDto = lessonMapper.mapEntityToDto(lesson);
         return lessonDto;
