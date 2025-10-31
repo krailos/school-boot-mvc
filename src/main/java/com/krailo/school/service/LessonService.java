@@ -1,5 +1,6 @@
 package com.krailo.school.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import com.krailo.school.dto.LessonDto;
 import com.krailo.school.dto.StudentDto;
 import com.krailo.school.entity.Lesson;
 import com.krailo.school.entity.LessonsStudents;
+import com.krailo.school.entity.Student;
 import com.krailo.school.exception.EntityNotFoundException;
 import com.krailo.school.mapper.LessonMapper;
 import com.krailo.school.mapper.StudentMapper;
@@ -35,16 +37,9 @@ public class LessonService {
                 .map(lessonMapper::mapEntityToDto).toList();
     }
 
-//    public List<LessonDto> findAllByStudentPresent() {
-//        List<Lesson> lessons = lessonRepository.findAll();
-//        for (Lesson lesson : lessons) {
-//            List<LessonsStudents> lessonsStudents = lesson.getLessonStudents().stream()
-//                    .filter(ls -> ls.isStudentPresent() == true).collect(Collectors.toList());
-//            lesson.setLessonStudents(lessonsStudents);
-//            System.out.println(lesson.getLessonStudents().size());
-//        }
-//        return lessons.stream().map(lessonMapper::mapEntityToDto).toList();
-//    }
+   public  List<Lesson> findAllByStudentAndBetweenDatesEntity (Student student, LocalDate start, LocalDate end){
+       return lessonRepository.findAllByStudentAndBetweenDates(student, start, end);
+    }
 
     public LessonDto findById(Integer id) {
         Lesson lesson = lessonRepository.findById(id).get();

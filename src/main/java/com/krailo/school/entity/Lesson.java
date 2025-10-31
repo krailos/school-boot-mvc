@@ -26,8 +26,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Data
-@EqualsAndHashCode(exclude = {"subject","gang", "audience", "lessonStudents" })
-@ToString(exclude = {"subject","gang", "audience", "lessonStudents" })
+@EqualsAndHashCode(exclude = {"subject","gang", "audience", "lessonsStudents" })
+@ToString(exclude = {"subject","gang", "audience", "lessonsStudents" })
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
